@@ -13,8 +13,8 @@ public class DBConection {
 
     private Connection conexion;
 
-    private final String PUERTO = "3306";
-    private final String ESQUEMA = "acda_ut2";
+    private final String PUERTO = "3308";
+    private final String ESQUEMA = "ut2_clase";
     private final String SGBD = "mysql";
     private final String url = "jdbc:"+SGBD +"://localhost:" + PUERTO +"/"+ESQUEMA + "?allowMultiQueries=true";
     private final String usuario = "root";

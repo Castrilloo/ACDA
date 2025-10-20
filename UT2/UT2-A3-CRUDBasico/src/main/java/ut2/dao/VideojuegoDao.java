@@ -10,15 +10,17 @@ import java.util.List;
 public class VideojuegoDao  implements GenericDAO<Videojuego, Integer>{
     @Override
     public void insertar(Videojuego entity) throws SQLException {
-        DBConection dbConection=DBConection.getInstancia();
+        DBConection dbConection = DBConection.getInstancia();
+        String sql = "INSERT INTO Videojuegos(titulo, plataforma, anio_lanzamiento, precio, disponible) VALUES (?, ?, ?, ?, ?)";
+        PreparedStatement statement = dbConection.getConexion().prepareStatement(sql);
 
-        Statement statement = dbConection.getConexion().createStatement();
-        statement.execute("INSERT INTO Videojuegos(titulo,plataforma,anio_lanzamiento,precio,disponible) VALUES("
-                +"'"+entity.getTitulo()+"',"
-                +"'"+entity.getPlataforma()+"',"
-                + entity.getAnioLanzamiento()+","
-                + entity.getPrecio() + ","
-                + entity.isDisponible()+");");
+        statement.setString(1, entity.getTitulo());
+        statement.setString(2, entity.getPlataforma());
+        statement.setInt(3, entity.getAnioLanzamiento());
+        statement.setDouble(4, entity.getPrecio());
+        statement.setBoolean(5, entity.isDisponible());
+
+        statement.executeUpdate();
         statement.close();
     }
 
@@ -88,10 +90,12 @@ public class VideojuegoDao  implements GenericDAO<Videojuego, Integer>{
 
     @Override
     public void eliminar(Integer id) throws SQLException {
-        DBConection dbConection=DBConection.getInstancia();
+        DBConection dbConection = DBConection.getInstancia();
 
-        Statement statement = dbConection.getConexion().createStatement();
-        statement.executeUpdate("DELETE FROM Videojuegos WHERE id = "+id+";");
+        String sql = "DELETE FROM Videojuegos WHERE id = ?";
+        PreparedStatement statement = dbConection.getConexion().prepareStatement(sql);
+        statement.setInt(1, id);
+        statement.executeUpdate();  // <-- sin argumento aquí
         statement.close();
     }
 }

@@ -26,7 +26,7 @@ public class Main {
         //insertar(videojuego);
         //mostrarTodos();
         //mostrarPorId(2);
-        eliminar(2);
+        //eliminar(6);
 
     }
     public static void insertar(Videojuego videojuego){
