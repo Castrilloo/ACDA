@@ -6,6 +6,7 @@ import ut2.model.Videojuego;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class VideojuegoDao  implements GenericDAO<Videojuego, Integer>{
     @Override
@@ -85,7 +86,13 @@ public class VideojuegoDao  implements GenericDAO<Videojuego, Integer>{
 
     @Override
     public void actualizar(Videojuego entity) throws SQLException {
-
+        DBConection dbConection = DBConection.getInstancia();
+        String sql = "UPDATE Videojuegos SET titulo = ? WHERE id = ?";
+        PreparedStatement statement = dbConection.getConexion().prepareStatement(sql);
+        statement.setString(1, entity.getTitulo());
+        statement.setInt(2, entity.getId());
+        statement.executeUpdate();
+        statement.close();
     }
 
     @Override

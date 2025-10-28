@@ -35,7 +35,7 @@ public class GenericServiceImpl <T,K> implements GenericService<T,K>{
     public List<T> obtenerTodos() {
         List<T> resultado = new ArrayList<T>();
         try{
-            genericDAO.obtenerTodos();
+            resultado = genericDAO.obtenerTodos();
         }catch (SQLException e){
             logger.error("Error al obtener todos los registros en la BD", e.fillInStackTrace());
         }
@@ -55,6 +55,16 @@ public class GenericServiceImpl <T,K> implements GenericService<T,K>{
 
     @Override
     public int actualizar(T entity) {
+        try{
+            genericDAO.actualizar(entity);
+            logger.info("Actualizacion correcta de {}",entity.getClass().getName());
+        } catch (SQLException e) {
+            logger.error("Error al actualizar {} en la BD: ",entity.getClass().getName(),e.fillInStackTrace());
+            return -1;
+        }
+
+
+
         return 0;
     }
 
