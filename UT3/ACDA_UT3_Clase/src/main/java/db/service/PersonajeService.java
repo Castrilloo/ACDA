@@ -14,22 +14,22 @@ public class PersonajeService {
         this.personajeDAO = new PersonajeDAO();
     }
 
-    //public void save(Personaje personaje) {
-    //    if (mision.getTitulo() == null || mision.getTitulo().isEmpty()) {
-    //        throw new IllegalArgumentException("El título de la mision no puede estar vacío.");
-    //    }
-    //    if (mision.getDescripcion() == null || mision.getDescripcion().isEmpty()) {
-    //        throw new IllegalArgumentException("La descripcion de la mision no puede estar vacia.");
-    //    }
-    //    String[] correctValues= {"BAJA","MEDIA","ALTA"};
-    //    if (!mision.getDificultad().equals(correctValues[0]) && (!mision.getDificultad().equals(correctValues[1])) && (!mision.getDificultad().equals(correctValues[2]))){
-    //        throw new IllegalArgumentException("La dificultad debe ser BAJA MEDIA o ALTA.");
-    //    }
-    //    if (mision.getRecompensa() == null || mision.getRecompensa().isEmpty()) {
-    //        throw new IllegalArgumentException("La recompensa de la mision no puede estar vacia.");
-    //    }
-    //    personajeDAO.save(personaje);
-    //}
+    public void save(Personaje personaje) {
+        if (personaje.getNombre() == null || personaje.getNombre().isEmpty()) {
+            throw new IllegalArgumentException("El nombre del personaje no puede estar vacío.");
+        }
+        if (personaje.getArmaPrincipal() == null || personaje.getArmaPrincipal().isEmpty()) {
+            throw new IllegalArgumentException("El arma principal del personaje no puede estar vacia.");
+        }
+        String[] correctValues= {"GUERRERO","MAGO","ARQUERO"};
+        if (!personaje.getClase().equals(correctValues[0]) && (!personaje.getClase().equals(correctValues[1])) && (!personaje.getClase().equals(correctValues[2]))){
+            throw new IllegalArgumentException("La clase debe ser GUERRERO,MAGO o ARQUERO.");
+        }
+        if (personaje.getPuntosVida() <=0 ) {
+            throw new IllegalArgumentException("Los puntos de vida deben ser mas que 0.");
+        }
+        personajeDAO.save(personaje);
+    }
 
     public Personaje findById(int id) {
         return personajeDAO.findById(id);

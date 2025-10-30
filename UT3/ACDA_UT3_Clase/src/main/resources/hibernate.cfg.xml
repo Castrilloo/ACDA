@@ -9,5 +9,8 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
         <mapping class="db.model.Videojuego"/>
+        <mapping class="db.model.Partida"/>
+        <mapping class="db.model.Personaje"/>
+        <mapping class="db.model.Mision"/>
     </session-factory>
 </hibernate-configuration>

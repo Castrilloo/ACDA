@@ -10,8 +10,11 @@ import java.util.List;
 
 public class PersonajeDAO {
 
+
     private static final String PERSISTENCE_UNIT_NAME = "default"; // Cambia si tu persistence.xml usa otro nombre
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+
+    public PersonajeDAO(){}
 
     public void save(Personaje personaje) {
         EntityManager em = emf.createEntityManager();

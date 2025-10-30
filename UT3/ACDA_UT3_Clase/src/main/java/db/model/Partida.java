@@ -17,8 +17,8 @@ public class Partida {
     @Column(name = "fechaInicio", nullable = false, length = 100)
     private String fechaInicio;
 
-    @Column(name = "numeroJugadores", nullable = false, length = 100)
-    private String numeroJugadores;
+    @Column(name = "numeroJugadores", nullable = false)
+    private int numeroJugadores;
 
     @Column(name = "estado", nullable = false)
     @Check(constraints = "estado IN ('EN CURSO', 'FINALIZADA', 'EN PAUSA')")
@@ -50,11 +50,11 @@ public class Partida {
         this.fechaInicio = fechaInicio;
     }
 
-    public String getNumeroJugadores() {
+    public int getNumeroJugadores() {
         return numeroJugadores;
     }
 
-    public void setNumeroJugadores(String numeroJugadores) {
+    public void setNumeroJugadores(int numeroJugadores) {
         this.numeroJugadores = numeroJugadores;
     }
 
